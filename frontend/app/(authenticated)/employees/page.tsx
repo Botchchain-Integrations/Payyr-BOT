@@ -535,7 +535,10 @@ export default function EmployeesPage() {
                         {employee.role}
                       </TableCell>
                       <TableCell className="whitespace-nowrap">
-                        ${Number(employee.salary).toLocaleString()}
+                        ${Number(employee.salary).toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 6,
+                        })}
                       </TableCell>
                       <TableCell>
                         <span

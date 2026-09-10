@@ -222,7 +222,8 @@ export default function PayrollPage() {
   //     address === "0x11f7eaC93C9DD552DFD657BE52007A25E200f356",
   // });
 
-  const hasSufficientFunds = displayBalance >= formattedMonthlyBalance;
+  const hasSufficientFunds =
+    displayBalance >= BigInt(Math.ceil(formattedMonthlyBalance * 1_000_000));
 
   const history = [
     formatPayrollData(payrollHistory1),
@@ -340,7 +341,7 @@ export default function PayrollPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-gray-600">
-              Your Balance
+              Contract Balance
             </CardTitle>
             <Wallet className="h-4 w-4 text-green-600" />
           </CardHeader>
@@ -355,7 +356,7 @@ export default function PayrollPage() {
             <p className="text-xs text-gray-500 mt-1">
               {address === "0x11f7eaC93C9DD552DFD657BE52007A25E200f356"
                 ? "Total in contract"
-                : "Available for payroll"}
+                : "Deposited for payroll"}
             </p>
           </CardContent>
         </Card>
@@ -399,10 +400,10 @@ export default function PayrollPage() {
                 hasSufficientFunds ? "text-green-600" : "text-red-600"
               }`}
             >
-              {hasSufficientFunds ? "Ready" : "Low Funds"}
+              {hasSufficientFunds ? "Ready" : "Deposit Required"}
             </div>
             <p className="text-xs text-gray-500 mt-1">
-              {hasSufficientFunds ? "Can pay all" : "Need more USDT"}
+              {hasSufficientFunds ? "Can pay all" : "Deposit USDT to contract first"}
             </p>
           </CardContent>
         </Card>
@@ -443,6 +444,7 @@ export default function PayrollPage() {
                     value={depositAmount}
                     onChange={(e) => setDepositAmount(e.target.value)}
                     placeholder="10000"
+                    className="text-black"
                   />
                 </div>
                 <div className="text-sm space-y-1">
@@ -459,8 +461,7 @@ export default function PayrollPage() {
                 </div>
                 <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
                   <p className="text-sm text-blue-800">
-                    💡 ERC20 tokens require approval before transfer for
-                    security.
+                    ERC20 tokens require approval before transfer for security.
                   </p>
                 </div>
               </div>
@@ -542,6 +543,11 @@ export default function PayrollPage() {
             </>
           )}
         </Button>
+        {!hasSufficientFunds && (
+          <p className="text-xs text-gray-400 mt-1">
+            Tip: Use the Deposit section above to add USDT to the contract first
+          </p>
+        )}
       </div>
 
       {/* Payroll History - FIXED TO USE BLOCKCHAIN DATA */}
