@@ -58,7 +58,7 @@ export function Sidebar() {
       {/* Logo/Brand */}
       <div className="flex h-16 items-center justify-between px-4">
         <div className="flex items-center space-x-2">
-          <DollarSign className="h-8 w-8 text-indigo-600" />
+          <DollarSign className="h-8 w-8 text-[#10a37f]" />
           {isOpen && (
             <span className="text-xl font-bold text-gray-900">
               Payyr Payroll
@@ -92,7 +92,7 @@ export function Sidebar() {
               className={cn(
                 "group flex items-center px-2 py-2 text-sm font-medium rounded-lg transition-colors relative",
                 isActive
-                  ? "bg-indigo-50 text-indigo-700"
+                  ? "bg-[#a4ef6b] text-[#003626]"
                   : isDisabled
                   ? "text-gray-400 cursor-not-allowed"
                   : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
@@ -104,7 +104,7 @@ export function Sidebar() {
                   "h-5 w-8 shrink-0",
                   isOpen && "mr-4",
                   isActive
-                    ? "text-indigo-500"
+                    ? "text-[#10a37f]"
                     : isDisabled
                     ? "text-gray-300"
                     : "text-gray-400 group-hover:text-gray-500"

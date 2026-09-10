@@ -337,7 +337,7 @@ export default function EmployeesPage() {
   };
 
   return (
-    <div className="p-4 md:p-8 bg-[#114277] min-h-screen">
+    <div className="p-4 md:p-8 bg-[#003626] min-h-screen">
       <div className="mb-6 md:mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-white">

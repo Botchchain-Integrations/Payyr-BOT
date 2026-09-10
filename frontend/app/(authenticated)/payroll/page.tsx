@@ -237,7 +237,7 @@ export default function PayrollPage() {
 
   if (isEmployer === false) {
     return (
-      <div className="p-4 md:p-8 bg-[#114277] min-h-screen">
+      <div className="p-4 md:p-8 bg-[#003626] min-h-screen">
         <div className="max-w-md mx-auto mt-8">
           <Card>
             <CardHeader>
@@ -307,7 +307,7 @@ export default function PayrollPage() {
   };
 
   return (
-    <div className="p-4 md:p-8 bg-[#114277] min-h-screen">
+    <div className="p-4 md:p-8 bg-[#003626] min-h-screen">
       <div className="mb-6 md:mb-8">
         <h1 className="text-2xl md:text-3xl font-bold text-white">Payroll</h1>
         <p className="text-gray-300 mt-2 text-sm md:text-base">

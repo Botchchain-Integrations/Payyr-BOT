@@ -145,7 +145,7 @@ export default function DashboardPage() {
   const lastPayroll = recentPayrolls[0];
 
   return (
-    <div className="p-4 md:p-8 bg-[#114277] min-h-screen">
+    <div className="p-4 md:p-8 bg-[#003626] min-h-screen">
       <div className="mb-6 md:mb-8">
         <h1 className="text-2xl md:text-3xl font-bold text-white">Dashboard</h1>
         <p className="text-gray-300 mt-2 text-sm md:text-base">
@@ -265,7 +265,7 @@ export default function DashboardPage() {
               <CardTitle className="text-xs md:text-sm font-medium text-gray-600">
                 Last Payroll Amount
               </CardTitle>
-              <TrendingUp className="h-4 w-4 text-indigo-600" />
+              <TrendingUp className="h-4 w-4 text-[#10a37f]" />
             </CardHeader>
             <CardContent>
               <div className="text-xl md:text-2xl font-bold text-gray-900">

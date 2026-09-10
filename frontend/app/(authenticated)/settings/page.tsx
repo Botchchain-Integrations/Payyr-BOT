@@ -37,7 +37,7 @@ export default function SettingsPage() {
   ];
 
   return (
-    <div className="p-4 md:p-8 bg-[#114277] min-h-screen text-black">
+    <div className="p-4 md:p-8 bg-[#003626] min-h-screen text-black">
       <div className="mb-6 md:mb-8">
         <h1 className="text-2xl md:text-3xl font-bold text-white">Settings</h1>
         <p className="text-white mt-2 text-sm md:text-base">
@@ -91,7 +91,7 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   setSettings({ ...settings, timezone: e.target.value })
                 }
-                className="flex h-10 w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+                className="flex h-10 w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10a37f] focus-visible:ring-offset-2"
               >
                 {timezones.map((tz) => (
                   <option key={tz.value} value={tz.value}>
@@ -121,7 +121,7 @@ export default function SettingsPage() {
                   setSettings({ ...settings, autopay: !settings.autopay })
                 }
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  settings.autopay ? "bg-indigo-600" : "bg-gray-200"
+                  settings.autopay ? "bg-[#10a37f]" : "bg-gray-200"
                 }`}
               >
                 <span

@@ -45,7 +45,7 @@ export default function Home() {
 
   if (!ready) {
     return (
-      <div className="min-h-screen bg-[#114277] flex items-center justify-center">
+      <div className="min-h-screen bg-[#003626] flex items-center justify-center">
         <div className="text-white animate-spin" />
       </div>
     );
@@ -54,7 +54,7 @@ export default function Home() {
   if (authenticated) return null;
 
   return (
-    <div className="min-h-screen bg-[#114277]">
+    <div className="min-h-screen bg-[#003626]">
       <div className="container mx-auto px-4 py-8 md:py-16">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 md:mb-16">
@@ -66,7 +66,7 @@ export default function Home() {
             </p>
             <Button
               size="lg"
-              className="bg-white text-[#114277] hover:bg-gray-100 gap-2"
+              className="bg-white text-[#003626] hover:bg-gray-100 gap-2"
               onClick={handleLogin}
               disabled={isLoading}
             >
@@ -127,7 +127,7 @@ export default function Home() {
 
             <Card>
               <CardHeader>
-                <TrendingUp className="h-8 w-8 text-indigo-600 mb-2" />
+                <TrendingUp className="h-8 w-8 text-[#10a37f] mb-2" />
                 <CardTitle>Analytics</CardTitle>
               </CardHeader>
               <CardContent>
@@ -300,7 +300,7 @@ export default function Home() {
                 </p>
                 <Button
                   size="lg"
-                  className="bg-[#114277] hover:bg-[#0d335e] gap-2"
+                  className="bg-[#003626] hover:bg-[#00281d] gap-2"
                   onClick={handleLogin}
                   disabled={isLoading}
                 >

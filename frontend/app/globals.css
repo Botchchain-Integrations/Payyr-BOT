@@ -2,16 +2,16 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #143452;
+  --foreground: #003626;
 
-  /* BOT Chain palette */
-  --color-primary: #143452; 
-  --color-primary-light: #b8c4d8; 
+  /* BOT Chain official palette */
+  --color-primary: #10a37f;
+  --color-primary-light: #a4ef6b;
   --color-bg-light: #ffffff; /* White background */
-  --color-bg-dark: #143452; /* Arc blue for dark/hero */
-  --color-text-dark: #143452; /* Arc blue for text on light */
+  --color-bg-dark: #10a37f; /* BOT Chain green for dark/hero */
+  --color-text-dark: #003626; /* BOT Chain deep green for text on light */
   --color-text-light: #ffffff; /* White text on dark */
-  --color-card-bg: #b8c4d8; /* Arc accent for cards/panels */
+  --color-card-bg: #a4ef6b; /* BOT Chain light green for cards/panels */
 }
 
 @theme inline {
