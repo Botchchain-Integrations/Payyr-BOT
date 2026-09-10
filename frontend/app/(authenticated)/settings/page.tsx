@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Settings as SettingsIcon, Save } from "lucide-react";
+import { PAYROLL_MANAGER_ADDRESS, EMPLOYEE_REGISTRY_ADDRESS } from "@/config/contracts";
 
 export default function SettingsPage() {
   const [settings, setSettings] = useState({
@@ -15,7 +16,8 @@ export default function SettingsPage() {
     timezone: "America/New_York",
     autopay: true,
     notificationEmail: "admin@botchain.com",
-    contractAddress: "0x1234...5678",
+    payrollAddress: PAYROLL_MANAGER_ADDRESS,
+    registryAddress: EMPLOYEE_REGISTRY_ADDRESS,
   });
 
   const handleSave = () => {
@@ -131,18 +133,27 @@ export default function SettingsPage() {
             </div>
 
             <div className="grid gap-2">
-              <Label htmlFor="contract-address">Contract Address</Label>
+              <Label htmlFor="payroll-address">Payroll Manager</Label>
               <Input
-                id="contract-address"
-                value={settings.contractAddress}
-                onChange={(e) =>
-                  setSettings({ ...settings, contractAddress: e.target.value })
-                }
-                placeholder="0x..."
-                className="font-mono"
+                id="payroll-address"
+                value={settings.payrollAddress}
+                readOnly
+                className="font-mono text-xs"
               />
               <p className="text-xs text-gray-500">
-                The smart contract address for your payroll system
+                Payroll contract for deposits and payroll execution
+              </p>
+            </div>
+            <div className="grid gap-2 mt-4">
+              <Label htmlFor="registry-address">Employee Registry</Label>
+              <Input
+                id="registry-address"
+                value={settings.registryAddress}
+                readOnly
+                className="font-mono text-xs"
+              />
+              <p className="text-xs text-gray-500">
+                Employee and role management contract
               </p>
             </div>
           </CardContent>

@@ -305,8 +305,6 @@ export default function PayrollPage() {
     });
   };
 
-  console.log(step);
-
   return (
     <div className="p-4 md:p-8 bg-[#114277] min-h-screen">
       <div className="mb-6 md:mb-8">
