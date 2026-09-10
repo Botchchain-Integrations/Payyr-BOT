@@ -61,7 +61,7 @@ export function Sidebar() {
           <DollarSign className="h-8 w-8 text-indigo-600" />
           {isOpen && (
             <span className="text-xl font-bold text-gray-900">
-              USDC Payroll
+              Payyr Payroll
             </span>
           )}
         </div>

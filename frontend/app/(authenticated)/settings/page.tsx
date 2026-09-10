@@ -11,10 +11,10 @@ import { Settings as SettingsIcon, Save } from "lucide-react";
 
 export default function SettingsPage() {
   const [settings, setSettings] = useState({
-    companyName: "Arc Network Inc.",
+    companyName: "BOT Chain Inc.",
     timezone: "America/New_York",
     autopay: true,
-    notificationEmail: "admin@arcnetwork.com",
+    notificationEmail: "admin@botchain.com",
     contractAddress: "0x1234...5678",
   });
 
@@ -158,7 +158,7 @@ export default function SettingsPage() {
               <div className="space-y-2">
                 <Label>Network</Label>
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <span className="font-medium">Arc Network</span>
+                  <span className="font-medium">BOT Chain</span>
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                     Connected
                   </span>
@@ -167,22 +167,24 @@ export default function SettingsPage() {
               <div className="space-y-2">
                 <Label>Block Explorer</Label>
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <span className="text-sm text-gray-600">arcscan.io</span>
+                  <span className="text-sm text-gray-600">scan.bohr.life</span>
                   <Button variant="ghost" size="sm">
                     View
                   </Button>
                 </div>
               </div>
               <div className="space-y-2">
-                <Label>USDC Token</Label>
+                <Label>USDT Token</Label>
                 <div className="p-3 bg-gray-50 rounded-lg">
-                  <span className="text-sm font-mono">0xA0b8...c3D4</span>
+                  <span className="text-sm font-mono">
+                    0x75edC9335175Fc0552D51D48439F229c10420fe3
+                  </span>
                 </div>
               </div>
               <div className="space-y-2">
                 <Label>Gas Price</Label>
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <span className="text-sm">0.1 ARC</span>
+                  <span className="text-sm">0.01 BOT</span>
                   <span className="text-xs text-gray-500">Standard</span>
                 </div>
               </div>

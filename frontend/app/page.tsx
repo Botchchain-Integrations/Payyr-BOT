@@ -6,6 +6,10 @@ import { usePrivy } from "@privy-io/react-auth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
+  EMPLOYEE_REGISTRY_ADDRESS,
+  PAYROLL_MANAGER_ADDRESS,
+} from "@/config/contracts";
+import {
   Wallet,
   Users,
   ShieldCheck,
@@ -55,7 +59,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 md:mb-16">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              USDC Payroll on Arc Network
+              USDT Payroll on BOT Chain
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-6">
               Secure, automated payroll management for your team
@@ -198,7 +202,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1 text-black">
-                      Deposit USDC
+                      Deposit USDT
                     </h4>
                     <p className="text-sm text-gray-600">
                       Fund your payroll balance
@@ -214,7 +218,7 @@ export default function Home() {
                       Execute Payroll
                     </h4>
                     <p className="text-sm text-gray-600">
-                      Instant USDC transfers to employee wallets
+                      Instant USDT transfers to employee wallets
                     </p>
                   </div>
                 </div>
@@ -231,7 +235,7 @@ export default function Home() {
                     EmployeeRegistry
                   </h4>
                   <p className="text-xs text-gray-500 mb-1">
-                    0x20B3dB45a351E92673112064A3F01951115eD6B7
+                    {EMPLOYEE_REGISTRY_ADDRESS}
                   </p>
                   <p className="text-sm text-gray-600">
                     Manages employee records, employer registration, and
@@ -243,10 +247,10 @@ export default function Home() {
                     PayrollManager
                   </h4>
                   <p className="text-xs text-gray-500 mb-1">
-                    0x1739715A3452BF1e336305cf8f9542d177cEa03A
+                    {PAYROLL_MANAGER_ADDRESS}
                   </p>
                   <p className="text-sm text-gray-600">
-                    Manages USDC deposits, executes payroll, tracks employer
+                    Manages USDT deposits, executes payroll, tracks employer
                     balances, and payroll history
                   </p>
                 </div>
@@ -292,7 +296,7 @@ export default function Home() {
                   Ready to streamline your payroll?
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Join companies using Payyr on Arc Network
+                  Join companies using Payyr on BOT Chain
                 </p>
                 <Button
                   size="lg"

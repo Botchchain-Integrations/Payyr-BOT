@@ -19,40 +19,43 @@ import formatBalance, { formatPayroll } from "@/utils/utils";
 import type { PayrollRun } from "@/types/contracts";
 import PayrollContractABi from "../../../lib/abi/PayrollManager.json";
 import EmployeeRegistryABI from "../../../lib/abi/EmployeeRegistry.json";
+import {
+  EMPLOYEE_REGISTRY_ADDRESS,
+  PAYROLL_MANAGER_ADDRESS,
+} from "@/config/contracts";
 import { useRouter } from "next/navigation";
 
-const PAYROLL_REGISTRY_ADDRESS =
-  "0x1739715A3452BF1e336305cf8f9542d177cEa03A" as const;
-const EMPLOYEE_REGISTRY_ADDRESS =
-  "0x20B3dB45a351E92673112064A3F01951115eD6B7" as const;
+const ADMIN_ADDRESS =
+  (process.env.NEXT_PUBLIC_PAYROLL_ADMIN_ADDRESS ||
+    "0x11f7eaC93C9DD552DFD657BE52007A25E200f356") as `0x${string}`;
 
 export default function DashboardPage() {
   const router = useRouter();
   const { address } = useAccount();
   // Get total contract balance (admin view)
   const { data: totalContractBalance } = useReadContract({
-    address: PAYROLL_REGISTRY_ADDRESS,
+    address: PAYROLL_MANAGER_ADDRESS,
     abi: PayrollContractABi.abi,
     functionName: "getTotalBalance",
   });
 
   // Get current payroll ID
   const { data: currentPayrollId } = useReadContract({
-    address: PAYROLL_REGISTRY_ADDRESS,
+    address: PAYROLL_MANAGER_ADDRESS,
     abi: PayrollContractABi.abi,
     functionName: "currentPayrollId",
   });
 
   // Get total payroll runs
   const { data: totalPayrollRuns } = useReadContract({
-    address: PAYROLL_REGISTRY_ADDRESS,
+    address: PAYROLL_MANAGER_ADDRESS,
     abi: PayrollContractABi.abi,
     functionName: "totalPayrollRuns",
   });
 
   // Get the last 3 payroll runs
   const { data: payroll1 } = useReadContract({
-    address: PAYROLL_REGISTRY_ADDRESS,
+    address: PAYROLL_MANAGER_ADDRESS,
     abi: PayrollContractABi.abi,
     functionName: "payrollRuns",
     args: [currentPayrollId as bigint],
@@ -62,7 +65,7 @@ export default function DashboardPage() {
   });
 
   const { data: payroll2 } = useReadContract({
-    address: PAYROLL_REGISTRY_ADDRESS,
+    address: PAYROLL_MANAGER_ADDRESS,
     abi: PayrollContractABi.abi,
     functionName: "payrollRuns",
     args: [
@@ -76,7 +79,7 @@ export default function DashboardPage() {
   });
 
   const { data: payroll3 } = useReadContract({
-    address: PAYROLL_REGISTRY_ADDRESS,
+    address: PAYROLL_MANAGER_ADDRESS,
     abi: PayrollContractABi.abi,
     functionName: "payrollRuns",
     args: [
@@ -113,7 +116,7 @@ export default function DashboardPage() {
 
   // Get employer's balance
   const { data: employerBalance } = useReadContract({
-    address: PAYROLL_REGISTRY_ADDRESS,
+    address: PAYROLL_MANAGER_ADDRESS,
     abi: PayrollContractABi.abi,
     functionName: "getMyBalance",
     query: {
@@ -122,7 +125,7 @@ export default function DashboardPage() {
   });
 
   const { data: totalContractBalances } = useReadContract({
-    address: PAYROLL_REGISTRY_ADDRESS,
+    address: PAYROLL_MANAGER_ADDRESS,
     abi: PayrollContractABi.abi,
     functionName: "getTotalBalance",
   });
@@ -146,7 +149,7 @@ export default function DashboardPage() {
       <div className="mb-6 md:mb-8">
         <h1 className="text-2xl md:text-3xl font-bold text-white">Dashboard</h1>
         <p className="text-gray-300 mt-2 text-sm md:text-base">
-          Overview of your payroll system on Arc Network
+          Overview of your payroll system on BOT Chain
         </p>
       </div>
 
@@ -218,7 +221,7 @@ export default function DashboardPage() {
                 })}
               </div>
               <p className="text-xs text-gray-500 mt-1">
-                {address === "0x11f7eaC93C9DD552DFD657BE52007A25E200f356"
+                {address === ADMIN_ADDRESS
                   ? "Total in contract"
                   : "Available for payroll"}
               </p>
@@ -371,7 +374,7 @@ export default function DashboardPage() {
             <CardContent>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-600">Arc Network Connection</span>
+                  <span className="text-gray-600">BOT Chain Connection</span>
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                     Connected
                   </span>
@@ -469,7 +472,7 @@ export default function DashboardPage() {
           <CardContent>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-gray-600">Arc Network Connection</span>
+                <span className="text-gray-600">BOT Chain Connection</span>
                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                   Connected
                 </span>

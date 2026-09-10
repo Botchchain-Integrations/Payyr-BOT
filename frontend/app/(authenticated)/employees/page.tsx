@@ -43,10 +43,7 @@ import EmployeeRegistryABI from "../../../lib/abi/EmployeeRegistry.json";
 import type { Abi } from "viem";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePublicClient } from "wagmi";
-import { resumeToPipeableStream } from "react-dom/server";
-
-const EMPLOYEE_REGISTRY_ADDRESS =
-  "0x20B3dB45a351E92673112064A3F01951115eD6B7" as const;
+import { EMPLOYEE_REGISTRY_ADDRESS } from "@/config/contracts";
 
 // Type for formatted employee data
 interface EmployeeData {
@@ -220,7 +217,7 @@ export default function EmployeesPage() {
         return {
           address: (employeeAddresses as string[])[index],
           name,
-          salary: formatUnits(salary, 6), // Convert to readable USDC
+          salary: formatUnits(salary, 6), // Convert to readable USDT
           isActive,
           role,
         };
@@ -434,7 +431,7 @@ export default function EmployeesPage() {
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="salary">Monthly Salary (USDC)</Label>
+                  <Label htmlFor="salary">Monthly Salary (USDT)</Label>
                   <Input
                     id="salary"
                     type="number"
@@ -627,7 +624,7 @@ export default function EmployeesPage() {
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="edit-salary">Monthly Salary (USDC)</Label>
+              <Label htmlFor="edit-salary">Monthly Salary (USDT)</Label>
               <Input
                 id="edit-salary"
                 type="number"

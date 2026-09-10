@@ -85,7 +85,7 @@ contract PayrollManagerTest is Test {
 
     function testCannotExecutePayrollWithInsufficientFunds() public {
         vm.prank(admin);
-        vm.expectRevert(PayrollManager.InsufficientBalance.selector);
+        vm.expectRevert("Insufficient employer balance");
         payrollManager.executePayroll();
     }
 

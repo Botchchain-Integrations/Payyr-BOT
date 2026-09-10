@@ -27,18 +27,16 @@ import {
 import { Wallet, Send, AlertCircle, CheckCircle, Loader2 } from "lucide-react";
 import { useReadContract, useWriteContract } from "wagmi";
 import formatBalance from "@/utils/utils";
-import USDCABI from "../../../lib/abi/USDC.json";
+import USDTABI from "../../../lib/abi/USDT.json";
 import PayrollContractABi from "../../../lib/abi/PayrollManager.json";
 import EmployeeRegistryABI from "../../../lib/abi/EmployeeRegistry.json";
 
 import { usePrivy } from "@privy-io/react-auth";
-
-const EMPLOYEE_REGISTRY_ADDRESS =
-  "0x20B3dB45a351E92673112064A3F01951115eD6B7" as const;
-const PAYROLL_REGISTRY_ADDRESS =
-  "0x1739715A3452BF1e336305cf8f9542d177cEa03A" as const;
-
-const ARC_USDC_ADDR = "0x3600000000000000000000000000000000000000" as const;
+import {
+  EMPLOYEE_REGISTRY_ADDRESS,
+  PAYROLL_MANAGER_ADDRESS,
+  USDT_ADDRESS,
+} from "@/config/contracts";
 
 export default function PayrollPage() {
   const [depositAmount, setDepositAmount] = useState("");
@@ -50,36 +48,34 @@ export default function PayrollPage() {
 
   /* ==================== READ CONTRACTS ==================== */
 
-  // User's USDC balance
+  // User's USDT balance
   const { data: userBalance } = useReadContract({
-    address: ARC_USDC_ADDR,
-    abi: USDCABI,
+    address: USDT_ADDRESS,
+    abi: USDTABI,
     functionName: "balanceOf",
     args: [address as `0x${string}`],
-    chainId: 5042002,
     query: { enabled: !!address },
   });
 
-  // Check USDC allowance to payroll contract
+  // Check USDT allowance to payroll contract
   const { data: allowance } = useReadContract({
-    address: ARC_USDC_ADDR,
-    abi: USDCABI,
+    address: USDT_ADDRESS,
+    abi: USDTABI,
     functionName: "allowance",
-    args: [address as `0x${string}`, PAYROLL_REGISTRY_ADDRESS],
-    chainId: 5042002,
+    args: [address as `0x${string}`, PAYROLL_MANAGER_ADDRESS],
     query: { enabled: !!address },
   });
 
   // Get contract total balance (for admin/deployer)
   const { data: totalContractBalance } = useReadContract({
-    address: PAYROLL_REGISTRY_ADDRESS,
+    address: PAYROLL_MANAGER_ADDRESS,
     abi: PayrollContractABi.abi,
     functionName: "getTotalBalance",
   });
 
-  // Employer's USDC balance in contract
+  // Employer's USDT balance in contract
   const { data: employerBalance } = useReadContract({
-    address: PAYROLL_REGISTRY_ADDRESS,
+    address: PAYROLL_MANAGER_ADDRESS,
     abi: PayrollContractABi.abi,
     functionName: "getMyBalance",
     query: {
@@ -97,7 +93,7 @@ export default function PayrollPage() {
 
   // Current payroll ID
   const { data: currentPayrollId } = useReadContract({
-    address: PAYROLL_REGISTRY_ADDRESS,
+    address: PAYROLL_MANAGER_ADDRESS,
     abi: PayrollContractABi.abi,
     functionName: "currentPayrollId",
   });
@@ -137,7 +133,7 @@ export default function PayrollPage() {
 
   // Fetch last 3 payroll runs
   const { data: payrollHistory1 } = useReadContract({
-    address: PAYROLL_REGISTRY_ADDRESS,
+    address: PAYROLL_MANAGER_ADDRESS,
     abi: PayrollContractABi.abi,
     functionName: "payrollRuns",
     args: [currentPayrollId as bigint],
@@ -147,7 +143,7 @@ export default function PayrollPage() {
   });
 
   const { data: payrollHistory2 } = useReadContract({
-    address: PAYROLL_REGISTRY_ADDRESS,
+    address: PAYROLL_MANAGER_ADDRESS,
     abi: PayrollContractABi.abi,
     functionName: "payrollRuns",
     args: [currentPayrollId ? (currentPayrollId as bigint) - 1n : 0n],
@@ -157,7 +153,7 @@ export default function PayrollPage() {
   });
 
   const { data: payrollHistory3 } = useReadContract({
-    address: PAYROLL_REGISTRY_ADDRESS,
+    address: PAYROLL_MANAGER_ADDRESS,
     abi: PayrollContractABi.abi,
     functionName: "payrollRuns",
     args: [currentPayrollId ? (currentPayrollId as bigint) - 2n : 0n],
@@ -273,10 +269,10 @@ export default function PayrollPage() {
     const parsedAmount = parseInt(depositAmount, 10);
 
     writeContract({
-      address: ARC_USDC_ADDR,
-      abi: USDCABI,
+      address: USDT_ADDRESS,
+      abi: USDTABI,
       functionName: "approve",
-      args: [PAYROLL_REGISTRY_ADDRESS, BigInt(parsedAmount * 1_000_000)],
+      args: [PAYROLL_MANAGER_ADDRESS, BigInt(parsedAmount * 1_000_000)],
     });
 
     setStep("deposit");
@@ -290,7 +286,7 @@ export default function PayrollPage() {
     const parsedAmount = parseInt(depositAmount, 10);
 
     writeContract({
-      address: PAYROLL_REGISTRY_ADDRESS,
+      address: PAYROLL_MANAGER_ADDRESS,
       abi: PayrollContractABi.abi,
       functionName: "depositPayroll",
       args: [BigInt(parsedAmount * 1_000_000)], // ← FIXED: Convert to smallest units
@@ -303,7 +299,7 @@ export default function PayrollPage() {
   // Execute payroll
   const handlePayAll = () => {
     writeContract({
-      address: PAYROLL_REGISTRY_ADDRESS,
+      address: PAYROLL_MANAGER_ADDRESS,
       abi: PayrollContractABi.abi,
       functionName: "executePayroll",
     });
@@ -316,7 +312,7 @@ export default function PayrollPage() {
       <div className="mb-6 md:mb-8">
         <h1 className="text-2xl md:text-3xl font-bold text-white">Payroll</h1>
         <p className="text-gray-300 mt-2 text-sm md:text-base">
-          Manage deposits and payroll payments on Arc Network
+          Manage deposits and payroll payments on BOT Chain
         </p>
       </div>
 
@@ -325,7 +321,7 @@ export default function PayrollPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-gray-600">
-              Your USDC
+              Your USDT
             </CardTitle>
             <Wallet className="h-4 w-4 text-blue-600" />
           </CardHeader>
@@ -408,7 +404,7 @@ export default function PayrollPage() {
               {hasSufficientFunds ? "Ready" : "Low Funds"}
             </div>
             <p className="text-xs text-gray-500 mt-1">
-              {hasSufficientFunds ? "Can pay all" : "Need more USDC"}
+              {hasSufficientFunds ? "Can pay all" : "Need more USDT"}
             </p>
           </CardContent>
         </Card>
@@ -423,7 +419,7 @@ export default function PayrollPage() {
           <DialogTrigger asChild>
             <Button variant="outline" className="gap-2 w-full sm:w-auto">
               <Wallet className="h-4 w-4 text-black" />
-              <span className="text-black">Deposit USDC</span>
+              <span className="text-black">Deposit USDT</span>
             </Button>
           </DialogTrigger>
 
@@ -432,16 +428,16 @@ export default function PayrollPage() {
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
                 <DialogTitle className="text-black">
-                  Step 1: Approve USDC
+                  Step 1: Approve USDT
                 </DialogTitle>
                 <DialogDescription>
-                  Allow the payroll contract to spend your USDC.
+                  Allow the payroll contract to spend your USDT.
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
                   <Label htmlFor="amount" className="text-black">
-                    Amount (USDC)
+                    Amount (USDT)
                   </Label>
                   <Input
                     id="amount"
@@ -481,7 +477,7 @@ export default function PayrollPage() {
                       Approving...
                     </>
                   ) : (
-                    "Approve USDC"
+                    "Approve USDT"
                   )}
                 </Button>
               </DialogFooter>
@@ -500,13 +496,13 @@ export default function PayrollPage() {
               <div className="grid gap-4 py-4">
                 <div className="p-3 bg-green-50 rounded-lg border border-green-200">
                   <p className="text-sm text-green-800">
-                    ✓ USDC approved! Click below to deposit.
+                    ✓ USDT approved! Click below to deposit.
                   </p>
                 </div>
                 <div className="text-sm">
                   Depositing:{" "}
                   <span className="font-bold text-lg">
-                    ${Number(depositAmount).toLocaleString()} USDC
+                    ${Number(depositAmount).toLocaleString()} USDT
                   </span>
                 </div>
               </div>
