@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Settings as SettingsIcon, Save } from "lucide-react";
-import { PAYROLL_MANAGER_ADDRESS, EMPLOYEE_REGISTRY_ADDRESS } from "@/config/contracts";
+import { PAYROLL_MANAGER_ADDRESS, EMPLOYEE_REGISTRY_ADDRESS, USDT_ADDRESS } from "@/config/contracts";
 
 export default function SettingsPage() {
   const [settings, setSettings] = useState({
@@ -178,7 +178,7 @@ export default function SettingsPage() {
               <div className="space-y-2">
                 <Label>Block Explorer</Label>
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <span className="text-sm text-gray-600">scan.bohr.life</span>
+                  <span className="text-sm text-gray-600">scan.botchain.ai</span>
                   <Button variant="ghost" size="sm">
                     View
                   </Button>
@@ -188,7 +188,7 @@ export default function SettingsPage() {
                 <Label>USDT Token</Label>
                 <div className="p-3 bg-gray-50 rounded-lg">
                   <span className="text-sm font-mono">
-                    0x75edC9335175Fc0552D51D48439F229c10420fe3
+                    {USDT_ADDRESS}
                   </span>
                 </div>
               </div>
