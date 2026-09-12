@@ -32,17 +32,15 @@ import PayrollContractABi from "../../../lib/abi/PayrollManager.json";
 import EmployeeRegistryABI from "../../../lib/abi/EmployeeRegistry.json";
 
 import { usePrivy } from "@privy-io/react-auth";
-import {
-  EMPLOYEE_REGISTRY_ADDRESS,
-  PAYROLL_MANAGER_ADDRESS,
-  USDT_ADDRESS,
-} from "@/config/contracts";
+import { useContracts } from "@/config/contracts";
 
 export default function PayrollPage() {
   const [depositAmount, setDepositAmount] = useState("");
   const [step, setStep] = useState<"closed" | "approve" | "deposit">("closed");
 
   const { user, ready, authenticated } = usePrivy();
+  const { EMPLOYEE_REGISTRY_ADDRESS, PAYROLL_MANAGER_ADDRESS, USDT_ADDRESS } =
+    useContracts();
 
   const address = user?.wallet?.address;
 

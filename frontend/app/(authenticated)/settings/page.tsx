@@ -8,9 +8,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Settings as SettingsIcon, Save } from "lucide-react";
-import { PAYROLL_MANAGER_ADDRESS, EMPLOYEE_REGISTRY_ADDRESS, USDT_ADDRESS } from "@/config/contracts";
+import { useContracts } from "@/config/contracts";
 
 export default function SettingsPage() {
+  const { PAYROLL_MANAGER_ADDRESS, EMPLOYEE_REGISTRY_ADDRESS, USDT_ADDRESS } =
+    useContracts();
   const [settings, setSettings] = useState({
     companyName: "BOT Chain Inc.",
     timezone: "America/New_York",

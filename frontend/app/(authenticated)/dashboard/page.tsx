@@ -19,10 +19,7 @@ import formatBalance, { formatPayroll } from "@/utils/utils";
 import type { PayrollRun } from "@/types/contracts";
 import PayrollContractABi from "../../../lib/abi/PayrollManager.json";
 import EmployeeRegistryABI from "../../../lib/abi/EmployeeRegistry.json";
-import {
-  EMPLOYEE_REGISTRY_ADDRESS,
-  PAYROLL_MANAGER_ADDRESS,
-} from "@/config/contracts";
+import { useContracts } from "@/config/contracts";
 import { useRouter } from "next/navigation";
 
 const ADMIN_ADDRESS =
@@ -32,6 +29,7 @@ const ADMIN_ADDRESS =
 export default function DashboardPage() {
   const router = useRouter();
   const { address } = useAccount();
+  const { EMPLOYEE_REGISTRY_ADDRESS, PAYROLL_MANAGER_ADDRESS } = useContracts();
   // Get total contract balance (admin view)
   const { data: totalContractBalance } = useReadContract({
     address: PAYROLL_MANAGER_ADDRESS,

@@ -1,5 +1,6 @@
 "use client";
 import { WalletConnect } from "./WalletConnect";
+import NetworkToggle from "@/config/NetworkToggle";
 
 export function Navbar() {
   return (
@@ -10,7 +11,10 @@ export function Navbar() {
             Payyr
           </h1>
         </div>
-        <WalletConnect />
+        <div className="flex items-center gap-3">
+          <NetworkToggle />
+          <WalletConnect />
+        </div>
       </div>
     </div>
   );

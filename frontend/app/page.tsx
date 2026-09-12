@@ -6,10 +6,6 @@ import { usePrivy } from "@privy-io/react-auth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  EMPLOYEE_REGISTRY_ADDRESS,
-  PAYROLL_MANAGER_ADDRESS,
-} from "@/config/contracts";
-import {
   Wallet,
   Users,
   ShieldCheck,
@@ -19,12 +15,14 @@ import {
   ArrowRight,
   CheckCircle,
 } from "lucide-react";
+import { useContracts } from "@/config/contracts";
 
 export default function Home() {
   const router = useRouter();
   const pathname = usePathname();
   const { ready, authenticated, login } = usePrivy();
   const [isLoading, setIsLoading] = useState(false);
+  const { EMPLOYEE_REGISTRY_ADDRESS, PAYROLL_MANAGER_ADDRESS } = useContracts();
 
   useEffect(() => {
     if (ready && authenticated && pathname === "/") {

@@ -43,7 +43,7 @@ import EmployeeRegistryABI from "../../../lib/abi/EmployeeRegistry.json";
 import type { Abi } from "viem";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePublicClient } from "wagmi";
-import { EMPLOYEE_REGISTRY_ADDRESS } from "@/config/contracts";
+import { useContracts } from "@/config/contracts";
 
 // Type for formatted employee data
 interface EmployeeData {
@@ -57,6 +57,7 @@ interface EmployeeData {
 export default function EmployeesPage() {
   const { address } = useAccount();
   const queryClient = useQueryClient();
+  const { EMPLOYEE_REGISTRY_ADDRESS } = useContracts();
   // const publicClient = usePublicClient();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
