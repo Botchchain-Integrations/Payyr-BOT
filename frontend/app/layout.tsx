@@ -3,6 +3,7 @@ import { Sora } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { WagmiProviders } from "@/config/WagmiProviders";
+import { ProofFooter } from "@/components/ProofFooter";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -23,9 +24,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${sora.variable} antialiased bg-gray-50`}>
         <WagmiProviders>
-          <Providers>
-            {children}
-          </Providers>
+            <Providers>
+              {children}
+            </Providers>
+            <ProofFooter />
         </WagmiProviders>
       </body>
     </html>
