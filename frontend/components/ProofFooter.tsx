@@ -12,6 +12,7 @@ export function ProofFooter() {
           <div className="min-w-0"><span className="block uppercase tracking-wider text-white/35">Latest Receipt</span><code className="block truncate text-white/80">{receiptHash}</code></div>
         </div>
         <a className="text-[#A4EF6B]" href={`https://scan.botchain.ai/tx/${receiptHash}`} target="_blank" rel="noreferrer">View transaction on BOTScan ↗</a>
+        <a className="text-[#A4EF6B]" href="https://x.com/use_Payyr" target="_blank" rel="noreferrer">Follow @use_Payyr on X ↗</a>
       </div>
     </footer>
   );
